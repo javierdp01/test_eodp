@@ -3,9 +3,6 @@ import numpy as np
 from common.io.writeToa import writeToa, readToa
 from matplotlib import pyplot as plt
 
-
-# plot the isrf vs l1b
-
 # We load the isrf files
 toa_isrf_0 = readToa("C:\\Users\javie\Desktop\EODP\SHARED-20250911T151756Z-1-001\SHARED\EODP_TER_2021\EODP-TS-ISM\output", "ism_toa_isrf_VNIR-0.nc")
 toa_isrf_1 = readToa("C:\\Users\javie\Desktop\EODP\SHARED-20250911T151756Z-1-001\SHARED\EODP_TER_2021\EODP-TS-ISM\output", "ism_toa_isrf_VNIR-1.nc")
