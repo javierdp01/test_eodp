@@ -43,10 +43,10 @@ mu1, sigma1, threshold1, ok1 = check_band(toa_l1b_1_output, toa_l1b_1_myoutputs,
 mu2, sigma2, threshold2, ok2 = check_band(toa_l1b_2_output, toa_l1b_2_myoutputs, tol=0.01)
 mu3, sigma3, threshold3, ok3 = check_band(toa_l1b_3_output, toa_l1b_3_myoutputs, tol=0.01)
 
-print("Band 0: mean=", mu0, " std=", sigma0, " threshold=", threshold0, " ok=", ok0)
-print("Band 1: mean=", mu1, " std=", sigma1, " threshold=", threshold1, " ok=", ok1)
-print("Band 2: mean=", mu2, " std=", sigma2, " threshold=", threshold2, "ok=", ok2)
-print("Band 3: mean=", mu3, " std=", sigma3, " threshold=", threshold3, "ok=", ok3)
+print("Band 0: mean =", mu0, " std =", sigma0, " threshold =", threshold0, " ok =", ok0)
+print("Band 1: mean =", mu1, " std =", sigma1, " threshold =", threshold1, " ok =", ok1)
+print("Band 2: mean =", mu2, " std =", sigma2, " threshold =", threshold2, "ok =", ok2)
+print("Band 3: mean =", mu3, " std =", sigma3, " threshold =", threshold3, "ok =", ok3)
 
 
 # We create the different plots
