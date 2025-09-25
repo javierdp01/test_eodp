@@ -50,6 +50,7 @@ print("Band 3: mean=", mu3, " std=", sigma3, " threshold=", threshold3, "ok=", o
 
 
 # We create the different plots
+# ISRF VS MYOUTPUTS
 plt.plot(  toa_isrf_0[0,:], label='isrf')
 plt.plot( toa_l1b_0_myoutputs[0,:], label='myoutputs')
 plt.title("isrf vs myoutputs 0")
@@ -71,6 +72,7 @@ plt.title("isrf vs myoutputs 3")
 plt.legend()
 plt.show()
 
+#MYOUTPUTS VS NO EQUALIZATION
 plt.plot(  toa_l1b_0_myoutputsnoeq[0,:], label='myoutputsnoeq')
 plt.plot( toa_l1b_0_myoutputs[0,:], label='myoutputs')
 plt.title("myoutputs vs myoutputs_noeq 0")
