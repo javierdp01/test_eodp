@@ -101,12 +101,12 @@ class mtf:
         fc = D / (lambd * focal)
 
         # Normalized 1D frequencies
-        frAct = fAct / 1 / w
-        frAlt = fAlt / 1 / w
+        fnAct = fAct / (1 / w)
+        fnAlt = fAlt / (1 / w)
 
         # Relative 1D frequencies
-        fnAct = fAct / fc
-        fnAlt = fAlt / fc
+        frAct = fAct / fc
+        frAlt = fAlt / fc
 
         # 2D frequencies
         [fnAltxx, fnActxx] = np.meshgrid(fnAlt, fnAct, indexing='ij')
