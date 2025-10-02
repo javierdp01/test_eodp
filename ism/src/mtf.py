@@ -122,7 +122,7 @@ class mtf:
         :param fr2D: 2D relative frequencies (f/fc), where fc is the optics cut-off frequency
         :return: diffraction MTF
         """
-        #TODO
+        Hdiff = (2 / pi) * (np.arccos(fr2D) - fr2D * (1 - fr2D**2)**(1/2))
         return Hdiff
 
 
@@ -135,7 +135,8 @@ class mtf:
         :param D: Telescope diameter [m]
         :return: Defocus MTF
         """
-        #TODO
+        x = pi * defocus * fr2D * (1 - fr2D)
+        Hdefoc = (2 * j1(x)) / x
         return Hdefoc
 
     def mtfWfeAberrations(self, fr2D, lambd, kLF, wLF, kHF, wHF):
@@ -149,7 +150,7 @@ class mtf:
         :param wHF: RMS of high-frequency wavefront errors [m]
         :return: WFE Aberrations MTF
         """
-        #TODO
+        Hwfe = np.exp(-fr2D * (1 - fr2D) *(kLF * ((wLF / lambd)**2) + kHF * ((wHF / lambd)**2)))
         return Hwfe
 
     def mtfDetector(self,fn2D):
