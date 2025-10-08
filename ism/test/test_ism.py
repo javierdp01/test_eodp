@@ -60,3 +60,5 @@ print("Band 0: mean =", mu0, " std =", sigma0, " threshold =", threshold0, " ok 
 print("Band 1: mean =", mu1, " std =", sigma1, " threshold =", threshold1, " ok =", ok1)
 print("Band 2: mean =", mu2, " std =", sigma2, " threshold =", threshold2, "ok =", ok2)
 print("Band 3: mean =", mu3, " std =", sigma3, " threshold =", threshold3, "ok =", ok3)
+
+# Irradiance
