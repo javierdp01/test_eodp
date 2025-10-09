@@ -32,8 +32,8 @@ class ism(initIsm):
 
             # Detection Stage
             # -------------------------------------------------------------------------------
-            # myDet = detectionPhase(self.auxdir, self.indir, self.outdir)
-            # toa = myDet.compute(toa, band)
+            myDet = detectionPhase(self.auxdir, self.indir, self.outdir)
+            toa = myDet.compute(toa, band)
 
             # Video Chain Phase
             # -------------------------------------------------------------------------------
