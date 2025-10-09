@@ -37,8 +37,8 @@ class ism(initIsm):
 
             # Video Chain Phase
             # -------------------------------------------------------------------------------
-            # myVcu = videoChainPhase(self.auxdir, self.indir, self.outdir)
-            # toa = myVcu.compute(toa, band)
+            myVcu = videoChainPhase(self.auxdir, self.indir, self.outdir)
+            toa = myVcu.compute(toa, band)
 
             # Write output TOA
             # -------------------------------------------------------------------------------

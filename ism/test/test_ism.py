@@ -9,7 +9,7 @@ toa_isrf_1 = readToa("C:\\Users\javie\Desktop\EODP\SHARED-20250911T151756Z-1-001
 toa_isrf_2 = readToa("C:\\Users\javie\Desktop\EODP\SHARED-20250911T151756Z-1-001\SHARED\EODP_TER_2021\EODP-TS-ISM\output", "ism_toa_isrf_VNIR-2.nc")
 toa_isrf_3 = readToa("C:\\Users\javie\Desktop\EODP\SHARED-20250911T151756Z-1-001\SHARED\EODP_TER_2021\EODP-TS-ISM\output", "ism_toa_isrf_VNIR-3.nc")
 
-# We load the ism files from myoutputs
+# We load the isrf files from myoutputs
 toa_ism_0_myoutputs = readToa("C:\\Users\\javie\Desktop\EODP\SHARED-20250911T151756Z-1-001\SHARED\EODP_TER_2021\EODP-TS-ISM\myoutputs", "ism_toa_isrf_VNIR-0.nc")
 toa_ism_1_myoutputs = readToa("C:\\Users\\javie\Desktop\EODP\SHARED-20250911T151756Z-1-001\SHARED\EODP_TER_2021\EODP-TS-ISM\myoutputs", "ism_toa_isrf_VNIR-1.nc")
 toa_ism_2_myoutputs = readToa("C:\\Users\\javie\Desktop\EODP\SHARED-20250911T151756Z-1-001\SHARED\EODP_TER_2021\EODP-TS-ISM\myoutputs", "ism_toa_isrf_VNIR-2.nc")
@@ -27,7 +27,20 @@ toa_ism_optical_1 = readToa("C:\\Users\\javie\Desktop\EODP\SHARED-20250911T15175
 toa_ism_optical_2 = readToa("C:\\Users\\javie\Desktop\EODP\SHARED-20250911T151756Z-1-001\SHARED\EODP_TER_2021\EODP-TS-ISM\output", "ism_toa_optical_VNIR-2.nc")
 toa_ism_optical_3 = readToa("C:\\Users\\javie\Desktop\EODP\SHARED-20250911T151756Z-1-001\SHARED\EODP_TER_2021\EODP-TS-ISM\output", "ism_toa_optical_VNIR-3.nc")
 
-# We check the absolute error of the ism files
+
+# We load the ism files from myoutputs
+toa_ism_0_myoutputs = readToa("C:\\Users\\javie\Desktop\EODP\SHARED-20250911T151756Z-1-001\SHARED\EODP_TER_2021\EODP-TS-ISM\myoutputs", "ism_toa_VNIR-0.nc")
+toa_ism_1_myoutputs = readToa("C:\\Users\\javie\Desktop\EODP\SHARED-20250911T151756Z-1-001\SHARED\EODP_TER_2021\EODP-TS-ISM\myoutputs", "ism_toa_VNIR-1.nc")
+toa_ism_2_myoutputs = readToa("C:\\Users\\javie\Desktop\EODP\SHARED-20250911T151756Z-1-001\SHARED\EODP_TER_2021\EODP-TS-ISM\myoutputs", "ism_toa_VNIR-2.nc")
+toa_ism_3_myoutputs = readToa("C:\\Users\\javie\Desktop\EODP\SHARED-20250911T151756Z-1-001\SHARED\EODP_TER_2021\EODP-TS-ISM\myoutputs", "ism_toa_VNIR-3.nc")
+
+# We load the ism files
+toa_isrf_0 = readToa("C:\\Users\javie\Desktop\EODP\SHARED-20250911T151756Z-1-001\SHARED\EODP_TER_2021\EODP-TS-ISM\output", "ism_toa_VNIR-0.nc")
+toa_isrf_1 = readToa("C:\\Users\javie\Desktop\EODP\SHARED-20250911T151756Z-1-001\SHARED\EODP_TER_2021\EODP-TS-ISM\output", "ism_toa_VNIR-1.nc")
+toa_isrf_2 = readToa("C:\\Users\javie\Desktop\EODP\SHARED-20250911T151756Z-1-001\SHARED\EODP_TER_2021\EODP-TS-ISM\output", "ism_toa_VNIR-2.nc")
+toa_isrf_3 = readToa("C:\\Users\javie\Desktop\EODP\SHARED-20250911T151756Z-1-001\SHARED\EODP_TER_2021\EODP-TS-ISM\output", "ism_toa_VNIR-3.nc")
+
+# We check the absolute error of the isrf files
 def check_band(toa_my, toa_ref, tol=0.01):
     diff = np.abs(toa_ref - toa_my) / np.maximum(toa_ref, 1e-12) * 100
     mu = np.mean(diff)
@@ -43,7 +56,7 @@ mu1, sigma1, threshold1, ok1 = check_band(toa_isrf_1, toa_ism_1_myoutputs, tol=0
 mu2, sigma2, threshold2, ok2 = check_band(toa_isrf_2, toa_ism_2_myoutputs, tol=0.01)
 mu3, sigma3, threshold3, ok3 = check_band(toa_isrf_3, toa_ism_3_myoutputs, tol=0.01)
 
-print("We check the ism files:")
+print("We check the isrf files:")
 print("Band 0: mean =", mu0, " std =", sigma0, " threshold =", threshold0, " ok =", ok0)
 print("Band 1: mean =", mu1, " std =", sigma1, " threshold =", threshold1, " ok =", ok1)
 print("Band 2: mean =", mu2, " std =", sigma2, " threshold =", threshold2, "ok =", ok2)
@@ -61,4 +74,23 @@ print("Band 1: mean =", mu1, " std =", sigma1, " threshold =", threshold1, " ok 
 print("Band 2: mean =", mu2, " std =", sigma2, " threshold =", threshold2, "ok =", ok2)
 print("Band 3: mean =", mu3, " std =", sigma3, " threshold =", threshold3, "ok =", ok3)
 
-# Irradiance
+# Plot System MTF. Report the MTF at Nyquist frequency
+
+
+# We check the absolute error of the ism files
+mu0, sigma0, threshold0, ok0 = check_band(toa_isrf_0, toa_ism_0_myoutputs, tol=0.01)
+mu1, sigma1, threshold1, ok1 = check_band(toa_isrf_1, toa_ism_1_myoutputs, tol=0.01)
+mu2, sigma2, threshold2, ok2 = check_band(toa_isrf_2, toa_ism_2_myoutputs, tol=0.01)
+mu3, sigma3, threshold3, ok3 = check_band(toa_isrf_3, toa_ism_3_myoutputs, tol=0.01)
+
+print("We check the ism files:")
+print("Band 0: mean =", mu0, " std =", sigma0, " threshold =", threshold0, " ok =", ok0)
+print("Band 1: mean =", mu1, " std =", sigma1, " threshold =", threshold1, " ok =", ok1)
+print("Band 2: mean =", mu2, " std =", sigma2, " threshold =", threshold2, "ok =", ok2)
+print("Band 3: mean =", mu3, " std =", sigma3, " threshold =", threshold3, "ok =", ok3)
+
+# Saturated pixels
+
+
+
+
