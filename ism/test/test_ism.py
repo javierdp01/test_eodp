@@ -1,7 +1,7 @@
 import numpy as np
 
 from common.io.writeToa import writeToa, readToa
-from matplotlib import pyplot as plt
+from config.ismConfig import ismConfig
 
 # We load the isrf files
 toa_isrf_0 = readToa("C:\\Users\javie\Desktop\EODP\SHARED-20250911T151756Z-1-001\SHARED\EODP_TER_2021\EODP-TS-ISM\output", "ism_toa_isrf_VNIR-0.nc")
@@ -92,7 +92,8 @@ print("Band 3: mean =", mu3, " std =", sigma3, " threshold =", threshold3, "ok =
 # Saturated pixels
 def saturated_pixels(toa):
     number_pixels = 0
-    max_value = 2 ** 12 - 1
+    config = ismConfig()
+    max_value = 2 ** config.bit_depth - 1
     for i in range(toa.shape[0]):
         for j in range(toa.shape[1]):
             if (toa[i, j] == max_value):
