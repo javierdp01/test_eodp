@@ -112,7 +112,3 @@ print("Band 0: saturated pixels =", number_pixels0, " percentage = ", percentage
 print("Band 1: saturated pixels =", number_pixels1, " percentage = ", percentage_pixels1)
 print("Band 2: saturated pixels =", number_pixels2, " percentage = ", percentage_pixels2)
 print("Band 3: saturated pixels =", number_pixels3, " percentage = ", percentage_pixels3)
-
-indir = r'C:\Users\javie\Desktop\EODP\SHARED-20250911T151756Z-1-001\SHARED\EODP_TER_2021\EODP-TS-L1C\input\gm_alt100_act_150C,C:\Users\javie\Desktop\EODP\SHARED-20250911T151756Z-1-001\SHARED\EODP_TER_2021\EODP-TS-L1C\input\l1b_output'
-indir = indir.split(',')
-print(indir)
