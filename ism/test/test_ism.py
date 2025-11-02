@@ -84,10 +84,6 @@ print("Values for the factors: Focal lenth [m] -> f = ", config.f ," Telescope p
 factor =  config.Tr * (pi / 4) * (config.D / config.f)**2
 print("Value of the conversion factor = ", factor)
 
-
-# Plot System MTF. Report the MTF at Nyquist frequency
-
-
 # We check the absolute error of the ism files
 mu0, sigma0, threshold0, ok0 = check_band(toa_ism_0, toa_ism_0_myoutputs, tol=0.01)
 mu1, sigma1, threshold1, ok1 = check_band(toa_ism_1, toa_ism_1_myoutputs, tol=0.01)
