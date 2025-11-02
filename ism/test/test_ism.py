@@ -2,6 +2,11 @@ import numpy as np
 
 from common.io.writeToa import writeToa, readToa
 from config.ismConfig import ismConfig
+from auxiliary.constants import constants
+from math import pi
+
+config = ismConfig()
+constants = constants()
 
 # We load the isrf files
 toa_isrf_0 = readToa("C:\\Users\javie\Desktop\EODP\SHARED-20250911T151756Z-1-001\SHARED\EODP_TER_2021\EODP-TS-ISM\output", "ism_toa_isrf_VNIR-0.nc")
@@ -74,6 +79,12 @@ print("Band 1: mean =", mu1, " std =", sigma1, " threshold =", threshold1, " ok 
 print("Band 2: mean =", mu2, " std =", sigma2, " threshold =", threshold2, "ok =", ok2)
 print("Band 3: mean =", mu3, " std =", sigma3, " threshold =", threshold3, "ok =", ok3)
 
+# Radiance to irradiance
+print("Values for the factors: Focal lenth [m] -> f = ", config.f ," Telescope pupil diameter [m] -> D ", config.D ," Optical transmittance [-] -> Tr = ", config.Tr)
+factor =  config.Tr * (pi / 4) * (config.D / config.f)**2
+print("Value of the conversion factor = ", factor)
+
+
 # Plot System MTF. Report the MTF at Nyquist frequency
 
 
@@ -89,10 +100,40 @@ print("Band 1: mean =", mu1, " std =", sigma1, " threshold =", threshold1, " ok 
 print("Band 2: mean =", mu2, " std =", sigma2, " threshold =", threshold2, "ok =", ok2)
 print("Band 3: mean =", mu3, " std =", sigma3, " threshold =", threshold3, "ok =", ok3)
 
+# Conversion factors
+print("Values for the factors: Ligth speed [m/s] -> c =", constants.speed_light ,", Planck constant [m2 kg / s] -> h =", constants.h_planck ,", Pixel area [m2] -> A =", config.pix_size**2, ", Integration time [s] -> T =", config.t_int)
+wv = config.wv
+def irradiance2photons(c, h, A, T, band):
+    E_in = A * T / 1000
+    E_photon = (h*c)/ wv[band]
+    factor = E_in / E_photon
+    return factor
+
+irradiance2photons0 = irradiance2photons(constants.speed_light, constants.h_planck, config.pix_size**2, config.t_int, 0)
+irradiance2photons1 = irradiance2photons(constants.speed_light, constants.h_planck, config.pix_size**2, config.t_int, 1)
+irradiance2photons2 = irradiance2photons(constants.speed_light, constants.h_planck, config.pix_size**2, config.t_int, 2)
+irradiance2photons3 = irradiance2photons(constants.speed_light, constants.h_planck, config.pix_size**2, config.t_int, 3)
+
+print("We check the factors:")
+print("Band 0: irradiance to photons =", irradiance2photons0)
+print("Band 1: irradiance to photons =", irradiance2photons1)
+print("Band 2: irradiance to photons =", irradiance2photons2)
+print("Band 3: irradiance to photons =", irradiance2photons3)
+
+print("Quantum efficiency [e-/ph] -> QE =", config.QE)
+print("Conversion factor Photons to Electrons =", config.QE)
+
+print("Values for the factors: Output Conversion factor [V/e-] -> OCF =", config.OCF, ", Gain of the Analog-to-digital conversion [-] -> G =" , config.ADC_gain)
+E2V = config.OCF * config.ADC_gain
+print("Conversion factor Electrons to Volts =", E2V)
+
+print("Values for the factors: Minimum Voltage [V] -> Min =", config.min_voltage, ", Maximum Voltage [V] -> Max =", config.max_voltage, ", bit depth [-] -> Depth =", config.bit_depth)
+V2D = (2**config.bit_depth - 1) / (config.max_voltage - config.min_voltage)
+print("Conversion factor Volts to Digital =", V2D)
+
 # Saturated pixels
 def saturated_pixels(toa):
     number_pixels = 0
-    config = ismConfig()
     max_value = 2 ** config.bit_depth - 1
     for i in range(toa.shape[0]):
         for j in range(toa.shape[1]):
